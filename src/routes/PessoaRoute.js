@@ -1,8 +1,12 @@
 import { Router } from 'express'
-import {getAll} from '../controllers/PessoaController.js'
+import PessoaController from '../controllers/PessoaController.js'
 
 const router = Router()
 
-router.get('/pessoas',getAll)
+router.get('/pessoas',PessoaController.getAll)
+router.get('/pessoas/:pk',PessoaController.getById)
+router.post('/pessoas',PessoaController.createPerson)
+router.put('/pessoas/:pk',PessoaController.updatePerson)
+router.delete('/pessoas/:pk',PessoaController.deletePerson)
 
 export default router

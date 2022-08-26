@@ -2,7 +2,6 @@ import express from 'express'
 import database from './database/database.js'
 import routes from './routes/index.js'
 
-// import PESSOA from './database/models/Pessoas.js'
 const PORT = 8080
 await database.sync()
 

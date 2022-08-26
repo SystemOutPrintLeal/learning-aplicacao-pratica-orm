@@ -1,5 +1,7 @@
 import sequelize from 'sequelize'
 import database from '../database.js'
+import TURMAS from '../models/Turmas.js'
+import MATRICULAS from '../models/Matriculas.js'
 
 const Pessoas = database.define('pessoa',{
     id: 
@@ -29,6 +31,14 @@ const Pessoas = database.define('pessoa',{
         allowNull: false
     },
 })
+Pessoas.associate = function(){
+    Pessoas.hasMany(TURMAS,{
+        foreignKey: 'docente_id'
+    })
+    Pessoas.hasMany(MATRICULAS,{
+        foreignKey: 'estudante_id'
+    })
+}
 await Pessoas.sync();
 
 export default Pessoas
