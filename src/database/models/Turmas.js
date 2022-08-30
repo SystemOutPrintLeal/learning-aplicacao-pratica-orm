@@ -12,9 +12,17 @@ const Turmas = database.define('turmas',{
         allowNull: false,
         primaryKey: true
     },
+    docente_id:{
+        type: sequelize.INTEGER,
+        allowNull: false
+    },
     data_inicio:
     { 
         type:sequelize.DATEONLY,
+        allowNull: false
+    },
+    nivel_id:{
+        type: sequelize.INTEGER,
         allowNull: false
     }
 })

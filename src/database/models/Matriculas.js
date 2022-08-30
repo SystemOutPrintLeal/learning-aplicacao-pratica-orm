@@ -15,7 +15,19 @@ const Matriculas = database.define('matriculas',{
     {
        type:sequelize.STRING,
        allowNull: false
-    }
+    },
+    estudante_id:
+    {
+        type: sequelize.INTEGER,
+        allowNull: false,
+    },
+    turma_id:
+    {
+        type: sequelize.INTEGER,
+        allowNull: false,
+    },
+    
+
 })
 
 Matriculas.associate = function(){
