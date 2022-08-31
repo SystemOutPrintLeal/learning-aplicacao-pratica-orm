@@ -20,11 +20,13 @@ const Matriculas = database.define('matriculas',{
     {
         type: sequelize.INTEGER,
         allowNull: false,
+        references:{model: 'pessoas' , key:'id'}
     },
     turma_id:
     {
         type: sequelize.INTEGER,
         allowNull: false,
+        references:{model: 'turmas' , key:'id'}
     },
     
 
