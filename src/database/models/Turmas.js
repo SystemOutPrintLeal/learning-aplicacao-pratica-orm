@@ -14,16 +14,18 @@ const Turmas = database.define('turmas',{
     },
     docente_id:{
         type: sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references:{model: 'pessoas' , key:'id'}
     },
     data_inicio:
     { 
         type:sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
     },
     nivel_id:{
         type: sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references:{model: 'niveis' , key:'id'}
     }
 })
 Turmas.associate = function(){
