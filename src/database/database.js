@@ -2,7 +2,7 @@
  
 const database = new sequelize({
     dialect: 'sqlite',
-    storage: './database/db/withFK.sqlite'
+    storage: './database/db/database.sqlite'
   })
 
 export default database
