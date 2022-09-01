@@ -9,4 +9,18 @@ async function getAll(req,res){
     }
 }
 
-export default { getAll }
+async function getById(req, res){
+    const { pk } = req.params
+    try{
+        const nivel = await NiveisDB.findOne({
+            where: {
+                id: Number(pk)
+                }
+            })
+        return res.status(200).json(nivel)
+    }catch(error){
+        return res.status(500).json(error.message)
+    }
+}
+
+export default { getAll , getById}

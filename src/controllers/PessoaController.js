@@ -1,4 +1,6 @@
 import PessoaDB from '../database/models/Pessoas.js'
+import MatriculasDB from '../database/models/Matriculas.js'
+
 
 async function getAll(req,res){
     try{
@@ -69,4 +71,19 @@ async function deletePerson(req,res){
     }
 }
 
-export default { getAll, getById, createPerson, updatePerson, deletePerson}
+async function getMatricula(req, res){
+    const { pk, matriculaId } = req.params
+    try{
+        const matricula = await MatriculasDB.findOne({
+            where: {
+                id: Number(matriculaId),
+                estudante_id : Number(pk)
+                }
+            })
+        return res.status(200).json(matricula)
+    }catch(error){
+        return res.status(500).json(error.message)
+    }
+}
+
+export default { getAll, getById, createPerson, updatePerson, deletePerson, getMatricula}
