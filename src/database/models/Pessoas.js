@@ -30,7 +30,7 @@ const Pessoas = database.define('pessoa',{
         type:sequelize.STRING,
         allowNull: false
     },
-})
+},{paranoid: true})
 Pessoas.associate = function(){
     Pessoas.hasMany(TURMAS,{
         foreignKey: 'docente_id'

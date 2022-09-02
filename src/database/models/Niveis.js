@@ -15,7 +15,7 @@ const Niveis = database.define('niveis',{
        type:sequelize.STRING,
        allowNull: false
     } 
-})
+},{paranoid: true})
 
 Niveis.associate = function(){
     Niveis.hasMany(TURMAS,{

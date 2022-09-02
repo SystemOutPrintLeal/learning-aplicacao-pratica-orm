@@ -27,7 +27,7 @@ const Turmas = database.define('turmas',{
         allowNull: false,
         references:{model: 'niveis' , key:'id'}
     }
-})
+},{paranoid: true})
 Turmas.associate = function(){
     Turmas.hasMany(MATRICULAS,{
         foreignKey: 'turma_id'

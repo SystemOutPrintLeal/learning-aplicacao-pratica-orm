@@ -30,7 +30,7 @@ const Matriculas = database.define('matriculas',{
     },
     
 
-})
+},{paranoid: true})
 
 Matriculas.associate = function(){
 
