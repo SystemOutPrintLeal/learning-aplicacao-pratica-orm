@@ -12,11 +12,11 @@ async function getAll(req,res){
 }
 
 async function getById(req, res){
-    const { pk } = req.params
+    const { estudanteID } = req.params
     try{
         const onePeople = await PessoaDB.findOne({
             where: {
-                id: Number(pk)
+                id: Number(estudanteID)
                 }
             })
         return res.status(200).json(onePeople)
@@ -25,7 +25,7 @@ async function getById(req, res){
     }
 }
 
-async function createPerson(req,res){
+async function createPessoa(req,res){
     const body = req.body
     try{
         await PessoaDB.create(body)
@@ -37,14 +37,14 @@ async function createPerson(req,res){
 
 }
 
-async function updatePerson(req,res){
+async function updatePessoa(req,res){
     const body = req.body
-    const { pk } = req.params
+    const { estudanteID } = req.params
     try{
         await PessoaDB.update(body,
             {
                 where:{
-                    id : Number(pk)
+                    id : Number(estudanteID)
                 }
             })
 
@@ -55,12 +55,12 @@ async function updatePerson(req,res){
     }
 }
 
-async function deletePerson(req,res){
-    const { pk } = req.params
+async function deletePessoa(req,res){
+    const { estudanteID } = req.params
     try{
         await PessoaDB.destroy({
             where:{
-                id: Number(pk)
+                id: Number(estudanteID)
             }
         })
         return res.status(200).json({message : "Succeed"}) 
@@ -72,12 +72,12 @@ async function deletePerson(req,res){
 }
 
 async function getMatricula(req, res){
-    const { pk, matriculaId } = req.params
+    const { estudanteID, matriculaID } = req.params
     try{
         const matricula = await MatriculasDB.findOne({
             where: {
-                id: Number(matriculaId),
-                estudante_id : Number(pk)
+                id: Number(matriculaID),
+                estudante_id : Number(estudanteID)
                 }
             })
         return res.status(200).json(matricula)
@@ -87,8 +87,8 @@ async function getMatricula(req, res){
 }
 
 async function createMatricula(req,res){
-    const { pk } = req.params
-    const body = { ...req.body , estudante_id: Number(pk)}
+    const { estudanteID } = req.params
+    const body = { ...req.body , estudante_id: Number(estudanteID)}
     try{
         const matricula = await MatriculasDB.create(body)
         return res.status(200).json(matricula)
@@ -101,16 +101,16 @@ async function createMatricula(req,res){
 
 async function updateMatricula(req,res){
     const body = req.body
-    const { pk , matriculaId} = req.params
+    const { estudanteID , matriculaID} = req.params
     try{
         await MatriculasDB.update(body,
             {
                 where:{
-                    id : Number(matriculaId),
-                    estudante_id: Number(pk)
+                    id : Number(matriculaID),
+                    estudante_id: Number(estudanteID)
                 }
             })
-        const matricula =  await MatriculasDB.findOne({where:{id: matriculaId}})
+        const matricula =  await MatriculasDB.findOne({where:{id: matriculaID}})
 
         return res.status(200).json(matricula)
     }catch(error)
@@ -120,12 +120,12 @@ async function updateMatricula(req,res){
 }
 
 async function deleteMatricula(req,res){
-    const { pk, matriculaId } = req.params
+    const { estudanteID, matriculaID } = req.params
     try{
         await MatriculasDB.destroy({
             where:{
-                id : Number(matriculaId),
-                estudante_id: Number(pk)
+                id : Number(matriculaID),
+                estudante_id: Number(estudanteID)
             }
         })
         return res.status(200).json({message : "Succeed"}) 
@@ -137,4 +137,4 @@ async function deleteMatricula(req,res){
 }
 
 
-export default { getAll, getById, createPerson, updatePerson, deletePerson, getMatricula,createMatricula,updateMatricula,deleteMatricula}
+export default { getAll, getById, createPessoa, updatePessoa, deletePessoa, getMatricula,createMatricula,updateMatricula,deleteMatricula}
